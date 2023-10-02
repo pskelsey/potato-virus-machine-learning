@@ -197,7 +197,6 @@ function shap = ShapleyValues(T,mdl)
     numPredictors = width(T)-2;
     shap = NaN(numSamples,numPredictors);
     for ii = 1:numSamples
-        ii
         oobTrees = oob(ii,:);
         f = @(T) predict(mdl,T,'Learners',oobTrees);
         explainer = shapley(f,T(:,1:end-2));
