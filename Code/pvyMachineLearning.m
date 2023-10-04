@@ -177,17 +177,10 @@ function metrics = PerformanceMetrics(yTest,labels,scores)
     fp = c(3);
     tp = c(4);
     TPR = tp/(tp+fn);   
-    FPR = fp/(fp+tn);   
     TNR = tn/(tn+fp);
-    FNR = fn/(fn+tp);
-    PPV = tp/(tp+fp);
-    NPV =  tn/(tn+fn); 
-    acc = (tp+tn)/(tp+tn+fp+fn);
     accBal = (TPR+TNR)/2;
-    F1 = 2*(PPV*TPR)/(PPV+TPR);
     [~,~,~,AUROC] = perfcurve(yTest,scores(:,2),1);
-    metrics = [tn fn fp tp TNR FNR FPR TPR PPV NPV acc accBal F1 ...
-        AUROC];
+    metrics = [accBal AUROC];
 end
 
 % Shapley values
